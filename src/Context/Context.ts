@@ -1,11 +1,6 @@
 import { createContext } from 'react';
 import type { Dispatch } from 'react';
-
-type Items = Array<{ id: number; name: string }>;
-type ItemsAction =
-  | { type: 'add'; name: string }
-  | { type: 'remove'; index: number }
-  | { type: 'reset' };
+import { Items, ItemsAction } from './types';
 
 export const shoppingListReducer = (
   state: Items,

@@ -1,4 +1,4 @@
-import { useContext, useRef, memo } from 'react';
+import { useRef, memo } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import ShoppingListContext from './Context';
 import { ColoredButton } from './styles';

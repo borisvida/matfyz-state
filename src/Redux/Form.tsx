@@ -1,6 +1,7 @@
 import { useRef, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { ColoredButton } from './styles';
+import { addItem } from './actions';
 
 const ShoppingForm = memo(() => {
   const inputRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
@@ -12,10 +13,7 @@ const ShoppingForm = memo(() => {
     }
 
     e.preventDefault();
-    dispatch({
-      type: 'add',
-      name: inputRef.current.value,
-    });
+    dispatch(addItem(inputRef.current.value));
     inputRef.current.value = '';
   };
 

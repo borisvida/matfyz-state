@@ -17,15 +17,15 @@ const Count = styled.span`
 `;
 
 const Navbar = () => {
-  const items = useContextSelector(
+  const count = useContextSelector(
     ShoppingListContext,
-    (context) => context.items,
+    (context) => context.items.length,
   );
   return (
     <StyledNavbar>
       <h1>Shopping</h1>
       <Count>
-        {items.length} {items.length === 1 ? 'item' : 'items'}
+        {count} {count === 1 ? 'item' : 'items'}
       </Count>
     </StyledNavbar>
   );

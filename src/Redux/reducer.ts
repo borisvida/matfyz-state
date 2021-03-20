@@ -1,11 +1,11 @@
-import { createContext } from 'use-context-selector';
-import type { Dispatch } from 'react';
-import { Items, ItemsAction } from './types';
+import { combineReducers } from 'redux';
+import { ItemsAction } from './actions';
 
-export const shoppingListReducer = (
-  state: Items,
-  action: ItemsAction,
-) => {
+type Items = Array<{ id: number; name: string }>;
+
+export type State = { items: Items };
+
+const itemsReducer = (state: Items = [], action: ItemsAction) => {
   switch (action.type) {
     case 'add':
       return [
@@ -27,12 +27,6 @@ export const shoppingListReducer = (
   }
 };
 
-const ShoppingListContext = createContext<{
-  items: Items;
-  dispatch: Dispatch<ItemsAction>;
-}>({
-  items: [],
-  dispatch: () => [],
-});
+const rootReducer = combineReducers({ items: itemsReducer });
 
-export default ShoppingListContext;
+export default rootReducer;
