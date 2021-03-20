@@ -1,3 +1,4 @@
+import { ThemeContext } from 'styled-components';
 import { useContext, useRef, memo, Dispatch } from 'react';
 import { ItemsAction } from '../Reducer/types';
 import ShoppingListContext from './Context';
@@ -12,6 +13,7 @@ type Props = { dispatch: Dispatch<ItemsAction> };
 
 const ShoppingForm = memo<Props>(({ dispatch }: Props) => {
   const inputRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+  const theme = useContext(ThemeContext);
 
   const handleSubmit: any = (e: Event) => {
     if (!inputRef.current) {
@@ -29,7 +31,7 @@ const ShoppingForm = memo<Props>(({ dispatch }: Props) => {
   return (
     <form onSubmit={handleSubmit}>
       <input ref={inputRef} />
-      <ColoredButton type="submit" color="darkgreen">
+      <ColoredButton type="submit" color={theme.background}>
         Add
       </ColoredButton>
     </form>

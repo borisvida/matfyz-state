@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import ShoppingListContext from './Context';
 
 const StyledNavbar = styled.div`
-  color: green;
-  background: lightgray;
+  color: ${(props) => props.theme.text};
+  background: ${(props) => props.theme.background};
   display: flex;
   padding: 0 30px;
   align-items: center;
