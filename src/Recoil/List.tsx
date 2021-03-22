@@ -3,21 +3,18 @@ import shoppingListState from './atom';
 import { Button } from './styles';
 
 const List = () => {
-  const [itemsState, setItemsState] = useRecoilState(
-    shoppingListState,
-  );
+  const [items, setItemsState] = useRecoilState(shoppingListState);
+
   return (
     <ul>
-      {itemsState.items.map((item, index) => (
+      {items.map((item, index) => (
         <li key={item.id}>
           {item.name}
           <Button
             onClick={() =>
-              setItemsState({
-                items: itemsState.items.filter(
-                  (_: any, i: number) => i !== index,
-                ),
-              })
+              setItemsState((items) =>
+                items.filter((_: any, i: number) => i !== index),
+              )
             }
           >
             X

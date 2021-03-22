@@ -2,30 +2,26 @@ import { atom, selector, useRecoilState } from 'recoil';
 import { useCallback } from 'react';
 
 export type Items = Array<{ id: number; name: string }>;
-export type ItemsState = { items: Items };
 
-const shoppingListState = atom<ItemsState>({
+const shoppingListState = atom<Items>({
   key: 'shoppingListState',
-  default: { items: [] },
+  default: [],
 });
 
-export const shoppingListItemsSelector = selector({
-  key: 'shoppingListItemsSelector',
+export const itemCountSelector = selector({
+  key: 'itemCountSelector',
   get: ({ get }) => {
-    const state = get(shoppingListState);
-    return state.items;
-  },
-  set: ({ set }, value: any) => {
-    set(shoppingListState, { items: value });
+    const items = get(shoppingListState);
+    return items.length;
   },
 });
 
 export const useShoppingListItemsActions = () => {
-  const [items, setItems] = useRecoilState(shoppingListItemsSelector);
+  const [, setItems] = useRecoilState(shoppingListState);
 
   const addItem = useCallback(
     (name) => {
-      setItems([
+      setItems((items) => [
         ...items,
         {
           id: items.length,
@@ -33,16 +29,16 @@ export const useShoppingListItemsActions = () => {
         },
       ]);
     },
-    [setItems, items],
+    [setItems],
   );
 
   const removeItem = useCallback(
     (toRemove) => {
-      setItems(
+      setItems((items) =>
         items.filter((_: any, index: number) => index !== toRemove),
       );
     },
-    [setItems, items],
+    [setItems],
   );
 
   return { addItem, removeItem };

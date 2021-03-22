@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { shoppingListItemsSelector } from './atom';
+import { itemCountSelector } from './atom';
 
 const StyledNavbar = styled.div`
   color: green;
@@ -17,12 +17,12 @@ const Count = styled.span`
 `;
 
 const Navbar = () => {
-  const items = useRecoilValue(shoppingListItemsSelector);
+  const count = useRecoilValue(itemCountSelector);
   return (
     <StyledNavbar>
       <h1>Shopping</h1>
       <Count>
-        {items.length} {items.length === 1 ? 'item' : 'items'}
+        {count} {count === 1 ? 'item' : 'items'}
       </Count>
     </StyledNavbar>
   );

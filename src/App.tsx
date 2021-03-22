@@ -1,5 +1,5 @@
 import { RecoilRoot } from 'recoil';
-import Shopping from './Redux/Shopping';
+import Shopping from './Recoil/Shopping';
 import './App.css';
 
 function App() {
